@@ -10,23 +10,23 @@ class DataBaseTestsMixin:
     INTEGER = 'Integer'
     DATE = 'Date'
 
-    def get_query_info(self, query):
+    def get_query_info(self, query, path_to_db):
         from_sql_checker = self._sql_checker(query)
-        from_cursor = self._get_cursor_info(query)
+        from_cursor = self._get_cursor_info(query, path_to_db)
         return {"query_info": from_sql_checker,
                 "cursor_info": from_cursor}
 
-    def _get_db_cursor(self, query):
-        con = sqlite3.connect("../netflix.db")
+    def _get_db_cursor(self, query, path_to_db):
+        con = sqlite3.connect(path_to_db)
         cur = con.cursor()
         cur.execute(query)
         return cur
 
-    def _get_cursor_info(self, query):
+    def _get_cursor_info(self, query, path_to_db):
         """
         Creates dict with info from SQL query string
         """
-        cur = self._get_db_cursor(query)
+        cur = self._get_db_cursor(query, path_to_db)
         return self.get_cursor_info(cur)
 
     def get_cursor_info(self, cursor):

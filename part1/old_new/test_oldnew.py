@@ -7,8 +7,8 @@ from ttools.skyprotests.tests_mixins import DataBaseTestsMixin
 
 class OldNewTestCase(SkyproTestCase, DataBaseTestsMixin):
     def setUp(self):
-        self.student_query = self.get_query_info(main.sqlite_query)
-        self.author_query = self.get_query_info(solution.sqlite_query)
+        self.student_query = self.get_query_info(main.sqlite_query, solution.path)
+        self.author_query = self.get_query_info(solution.sqlite_query, solution.path)
 
     def test_is_director_in_query(self):
         self.assertRegex(main.sqlite_query, ".Guy Ritchie",

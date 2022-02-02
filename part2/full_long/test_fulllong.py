@@ -8,8 +8,8 @@ import re
 
 class LongTestCase(SkyproTestCase, DataBaseTestsMixin):
     def setUp(self):
-        self.student_query = self.get_query_info(main.sqlite_query)
-        self.author_query = self.get_query_info(solution.sqlite_query)
+        self.student_query = self.get_query_info(main.sqlite_query, solution.path)
+        self.author_query = self.get_query_info(solution.sqlite_query, solution.path)
 
     def test_main_has_result(self):
         self.assertTrue(hasattr(main, 'result'),
